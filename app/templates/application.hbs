@@ -1,5 +1,28 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
 
-{{outlet}}
+fastboot.isFastBoot = {{fastboot.isFastBoot}}
+
+{{!
+  Apparently this bug does not repro if you insert invalid HTML5 somewhere,
+  such as uncommenting the following line:
+}}
+{{! <tbody></tbody> }}
+
+{{!
+  Expected:
+  <button disabled>Disabled</button>
+  Actual:
+  <button disabled="true">Disabled</button>
+}}
+<button disabled={{buttonDisabled}}>Disabled</button>
+
+{{!
+  Expected: <button>Enabled</button>
+  Actual: <button>Enabled</button>
+}}
+<button disabled={{buttonEnabled}}>Enabled</button>
+
+{{!
+  Expected: <button>Disabled in Fastboot</button>
+  Actual: <button disabled="false">Disabled in Fastboot</button>
+}}
+<button disabled={{fastboot.isFastBoot}}>Disabled in Fastboot</button>
